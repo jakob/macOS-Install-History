@@ -81,5 +81,18 @@ class InstallHistory {
 		}
 		return firstSighting
 	}
+	
+	func macOSVersion(on checkDate: Date) -> String? {
+		var latestRecord: InstallRecord?
+		for record in records {
+			if record.installDate < checkDate {
+				if latestRecord == nil || latestRecord!.installDate < record.installDate {
+					latestRecord = record
+				}
+			}
+		}
+		return latestRecord?.displayVersion
+	}
+
 }
 

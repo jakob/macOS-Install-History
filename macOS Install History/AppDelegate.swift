@@ -24,7 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
 			NSApp.presentError(error, modalFor: window, delegate: nil, didPresent: nil, contextInfo: nil)
 		}
 		historyTableView.reloadData()
-		updateFirstSighting()
+		checkDate()
 	}
 	
 	@IBAction func choosePath(_ sender: Any) {
@@ -40,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
 					NSApp.presentError(error, modalFor: self.window, delegate: nil, didPresent: nil, contextInfo: nil)
 				}
 				self.historyTableView.reloadData()
-				self.updateFirstSighting()
+				self.checkDate()
 			}
 		}
 
@@ -55,7 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
 			history = newHistory
 			pathField.stringValue = newHistory.url.path
 			historyTableView.reloadData()
-			updateFirstSighting()
+			checkDate()
 		} catch let error {
 			NSApp.presentError(error, modalFor: window, delegate: nil, didPresent: nil, contextInfo: nil)
 		}
@@ -88,24 +88,27 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
 		return view
 	}
 
-	@IBOutlet weak var versionField: NSTextField!
-	@IBAction func versionFieldDidChange(_ sender: Any) {
-		updateFirstSighting()
+	@IBOutlet weak var checkDateField: NSTextField!
+	@IBAction func checkDateFieldChanged(_ sender: Any) {
+		checkDate()
 	}
 	
-	func updateFirstSighting() {
+	func checkDate() {
 		let formatter = DateFormatter()
 		formatter.dateStyle = .medium
 		formatter.timeStyle = .none
 		
-		if let firstSighting = history?.firstConfirmedSighting(version: versionField.stringValue) {
-			firstConfirmedVersionField.stringValue = formatter.string(from: firstSighting)
+		if let date = formatter.date(from: checkDateField.stringValue) {
+			if let version = history?.macOSVersion(on: date) {
+				versionField.stringValue = version
+			} else {
+				versionField.stringValue = "0"
+			}
 		} else {
-			firstConfirmedVersionField.stringValue = "Unknown"
+			versionField.stringValue = "unknown date"
 		}
-
 	}
-	@IBOutlet weak var firstConfirmedVersionField: NSTextField!
+	@IBOutlet weak var versionField: NSTextField!
 	func applicationWillTerminate(_ aNotification: Notification) {
 		// Insert code here to tear down your application
 	}
