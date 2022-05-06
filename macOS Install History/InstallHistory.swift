@@ -55,7 +55,7 @@ class InstallHistory {
 				}
 				var cleanedDisplayVersion = displayVersion.trimmingCharacters(in: .whitespaces)
 				if cleanedDisplayVersion.isEmpty {
-					if let range = displayName.range(of: "(\\d+)(\\.\\d+){0,2}", options: .regularExpression, range: nil, locale: nil) {
+					if let range = displayName.range(of: "(\\d{2})(\\.\\d+){1,2}", options: .regularExpression, range: nil, locale: nil) {
 						cleanedDisplayVersion = String(displayName[range])
 					} else {
 						return nil
