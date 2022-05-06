@@ -10,6 +10,7 @@
 		36447A532825393500F5BB7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36447A522825393500F5BB7A /* AppDelegate.swift */; };
 		36447A552825393700F5BB7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36447A542825393700F5BB7A /* Assets.xcassets */; };
 		36447A582825393700F5BB7A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36447A562825393700F5BB7A /* MainMenu.xib */; };
+		36447A602825395900F5BB7A /* InstallHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36447A5F2825395900F5BB7A /* InstallHistory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +19,7 @@
 		36447A542825393700F5BB7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36447A572825393700F5BB7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		36447A592825393700F5BB7A /* macOS_Install_History.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS_Install_History.entitlements; sourceTree = "<group>"; };
+		36447A5F2825395900F5BB7A /* InstallHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallHistory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				36447A522825393500F5BB7A /* AppDelegate.swift */,
+				36447A5F2825395900F5BB7A /* InstallHistory.swift */,
 				36447A542825393700F5BB7A /* Assets.xcassets */,
 				36447A562825393700F5BB7A /* MainMenu.xib */,
 				36447A592825393700F5BB7A /* macOS_Install_History.entitlements */,
@@ -129,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36447A532825393500F5BB7A /* AppDelegate.swift in Sources */,
+				36447A602825395900F5BB7A /* InstallHistory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,7 +200,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -250,7 +254,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
