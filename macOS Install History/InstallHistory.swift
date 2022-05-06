@@ -68,5 +68,18 @@ class InstallHistory {
 			}
 		}
 	}
+	
+	func firstConfirmedSighting(version: String) -> Date? {
+		var firstSighting: Date?
+		for record in records {
+			let compRes = version.compare(record.displayVersion, options: .numeric, range: nil, locale: nil)
+			if compRes == .orderedSame || compRes == .orderedAscending {
+				if firstSighting == nil || record.installDate < firstSighting! {
+					firstSighting = record.installDate
+				}
+			}
+		}
+		return firstSighting
+	}
 }
 

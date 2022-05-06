@@ -24,6 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
 			NSApp.presentError(error, modalFor: window, delegate: nil, didPresent: nil, contextInfo: nil)
 		}
 		historyTableView.reloadData()
+		updateFirstSighting()
 	}
 	
 	@IBAction func choosePath(_ sender: Any) {
@@ -39,6 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
 					NSApp.presentError(error, modalFor: self.window, delegate: nil, didPresent: nil, contextInfo: nil)
 				}
 				self.historyTableView.reloadData()
+				self.updateFirstSighting()
 			}
 		}
 
@@ -53,6 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
 			history = newHistory
 			pathField.stringValue = newHistory.url.path
 			historyTableView.reloadData()
+			updateFirstSighting()
 		} catch let error {
 			NSApp.presentError(error, modalFor: window, delegate: nil, didPresent: nil, contextInfo: nil)
 		}
@@ -85,6 +88,24 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
 		return view
 	}
 
+	@IBOutlet weak var versionField: NSTextField!
+	@IBAction func versionFieldDidChange(_ sender: Any) {
+		updateFirstSighting()
+	}
+	
+	func updateFirstSighting() {
+		let formatter = DateFormatter()
+		formatter.dateStyle = .medium
+		formatter.timeStyle = .none
+		
+		if let firstSighting = history?.firstConfirmedSighting(version: versionField.stringValue) {
+			firstConfirmedVersionField.stringValue = formatter.string(from: firstSighting)
+		} else {
+			firstConfirmedVersionField.stringValue = "Unknown"
+		}
+
+	}
+	@IBOutlet weak var firstConfirmedVersionField: NSTextField!
 	func applicationWillTerminate(_ aNotification: Notification) {
 		// Insert code here to tear down your application
 	}
