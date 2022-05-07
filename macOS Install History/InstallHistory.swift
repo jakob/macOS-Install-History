@@ -15,6 +15,8 @@ class InstallHistory {
 		return try InstallHistory(url: defaultURL)
 	}
 	
+	static var local = try? forCurrentMachine()
+	
 	let url: URL
 	
 	init(url: URL) throws {
